@@ -1,9 +1,10 @@
 package data;
 
 public class Student {
-    private String id;      // ___
-    private String name;    // ___
-    private int yob;        // ___
+    private static String id;      // ___
+    public static String name;    // ___
+    
+    public int yob;        // ___       // non-static
     private double gpa;     // grade point average___
 
     public Student(String id, String name, int yob, double gpa) {
@@ -53,6 +54,14 @@ public class Student {
     // gáy điểm
     public void showProfile() {
         System.out.printf("|%8s|%-25s|%4d|%4.1f|\n", id, name, yob, gpa);
-    }
+        //System.out.println("By the way, my yob is " + yob);
+    }   // non-static chơi với ai? non-static chơi tất cả.
     
+    // chơi hàm static
+    public static void sayHi() {
+        System.out.println("Hi everyone, my name is " + name);
+//        System.out.println("By the way, my yob is " + yob);
+        // Không biết yob nào để mà in vì clone nhiều yob quá, vì nhiều sinh viên,
+        // static chỉ chơi với static vì cùng khu vực.
+    }
 }

@@ -12,6 +12,8 @@ public class DogManagement {
         
         Dog             chiHu       =       new Dog("CHI HU HU", 2026, 0.5);        
     // data type   tên biến object              phức tạp, object
+    //                                      malloc() calloc()
+    //                                      memory allocation
         
         chiHu.bark();
         
@@ -21,6 +23,16 @@ public class DogManagement {
         // Kiểm tra xem khi đổ vào Khuôn, đứa sau có đè đứa trước hay không?
         System.out.println("chiHu barks again.");
         chiHu.bark();
+        
+        // Ăn nhiều thì tăng cân.
+        chiHu.updateWeight(5.0);
+        System.out.println("After update weight.");
+        chiHu.bark();
+        ngaoDa.bark();
+        
+        int chiHuYob = chiHu.getYob();
+        System.out.println("chiHuYob: " + chiHuYob);
+        System.out.println("ngaoDaYob: " + ngaoDa.getYob());
     }
     
 }

@@ -32,6 +32,17 @@ public class Dog {
         System.out.printf("|GOGO|%-10s|%4d|%4.1f|\n", name, yob, weight);
     }
     
+    public void updateWeight(double newWeight) {
+        weight = newWeight;
+    }
+    
+    // Giống câu chuyện hỏi ai đó info.
+    // Cho tôi biết năm sinh của bạn, bạn.yob
+    // ban.getYob(), bạn lấy năm sinh của bạn đưa cho tôi.
+    public int getYob() {
+        return yob;
+    }
+    
 }
 
 // Nhóm các bạn Dog chia sẻ chung nhiều đặc điểm: tên:___; cân nặng:___;
@@ -43,3 +54,8 @@ public class Dog {
 // Khuôn thì phải kín, code phải viết trong class.
 // KHUÔN LÀ HÌNH DÁNG CỦA 1 OBJECT SẼ XUẤT HIỆN TRONG TƯƠNG LAI,
 // CHỨA ĐỰNG ĐẶC TÍNH/ĐẶC ĐIỂM VÀ HÀNH VI (XỬ LÍ INFO - HÀM).
+
+// KĨ THUẬT ĐÓNG GÓI/GOM ĐẶC TÍNH VÀ HÀNH VI XỬ LÍ ĐẶC TÍNH ĐÓ HÌNH THÀNH NÊN 1 OBJECT RIÊNG BIỆT,
+// KĨ THUẬT CÔ LẬP HÀM VÀ BIẾN VÀO 1 KHU VỰC (OBJECT, CLASS) TẠO THÀNH 1 THỰC THỂ HOẠT ĐỘNG RIÊNG BIỆT,
+// KĨ THUẬT GÓI MỌI THỨ LẠI THÀNH 1 ĐƠN VỊ (OBJECT) ĐƯỢC GỌI LÀ ENCAPSULATION.
+// OOP: ENCAPSULATION/ABSTRACTION/INHERITANCE/POLYMORPHISM

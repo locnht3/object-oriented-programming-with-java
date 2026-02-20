@@ -3,7 +3,9 @@ package basicarray;
 public class BasicArray {
 
     public static void main(String[] args) {
-        playWithPrimitiveArrayV2();
+        //playWithPrimitiveArrayV3();
+        //playWithAnObject();
+        playWithObjectArray();
     }
     
     public static void playWithPrimitiveArray() {
@@ -76,6 +78,102 @@ public class BasicArray {
             System.out.print(x + " ");
         }
         System.out.println("");
+    }
+    
+    public static void playWithPrimitiveArrayV3() {
+        int a = 10;
+        // a là 10 rõ ràng thì đòi chấm gì nữa
+        int a1 = 10, a2 = 100, a3, a4, a5, a6, a7, a8, a9, a10; // LẺ
+        System.out.println(a2 + " ");
+        
+        int arr1[] = {  5,    10, 15, 20, 25, 30}; // có nhiều biến chung arr
+        // cụ thể là arr[0]  [1]...
+        int arr2[] = new int[]{5, 10, 15, 20, 25, 30};  // explicit new
+        
+        int[] arr3 = {5, 10, 15, 20, 25, 30};
+        // đưa nhiều value thì phải có nhiều biến tương ứng
+        // có nhiều biến lắm luôn và value tương ứng
+        int[] arr; // arr là biến má mì, con trỏ, trỏ vùng new cực bụ
+        arr = new int[30];  // trỏ object chứa rất nhiều biến int khác
+        arr[0] = 100;
+        
+        System.out.println("The array arr has");
+        System.out.println(arr[0]);
+        System.out.println(arr[1]);
+        for (int x : arr) { // x = arr[0] xin value thằng đầu tiên
+                            // x = arr[1] xin value thằng kế, [i]
+            System.out.print(x + " ");
+        }
+        System.out.println("");
+        
+        // arr[0] chấm xổ ra gì? xổ cái đầu mày, print xài luôn, chấm gì, nó là 100 mà
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println("");
+    }
+    
+    public static void playWithAnObject() {
+        // Muốn lưu hồ sơ 1 sinh viên, ta cần 2 thứ: biến/tên tắt/con trỏ/reference và vùng new clone đổ phễu
+        // Muốn lưu 1 giá trị bình thường, ta cần 2 thứ: biến primitive, value đơn
+        int a = 100;
+        Student x; // em với thầy nói xấu đứa kia - x đi
+        // đã là sinh viên, thì chắc chắn showProfile(), công dân thì phải có CCCD
+        x = new Student("SE123456", "AN NGUYỄN", 2001, 5.6);
+        //x.showProfile();
+        Student y = x;
+        
+        x = new Student("SE123457", "BÌNH LÊ", 2000, 5.7);
+        x.showProfile();      
+        y.showProfile();
+        
+        // hạ cánh nơi anh - cho con trỏ hạ cánh xuống 1 chỗ cực kì cool
+        x = null;   // trỏ vùng mới, hạ cánh đáy của ram
+                    // gán địa chỉ 0, con số 0 vào trong biến con trỏ
+                    // biến con trỏ lưu tọa độ đáy ram, chứa toàn số 0, byte null
+                    // nhà đầu phố (số nhà 0) tối thui, không có gì
+                    // nhà null
+        x.showProfile();
+    }
+    
+    public static void playWithObjectArray() {
+        // Muốn lưu hồ sơ 50 sinh viên thì cần chuẩn bị gì?
+        // 50 biến/tên tắt và 50 value - 50 vùng new
+        int a1, a2, a3, a4, a5, a6; // .. 50 số
+        // a1 = 5; // value 5
+        
+        int arr[] = new int[50]; // 50 biến heng, chưa có value nha
+        
+        Student s1, s2, s3, s4, s5, s6, s7; // ,...
+        // s1 = new Student(id, name, yob, gpa);
+        
+        // 50 biến cái đã, mảng các biến sinh viên
+        Student[] s = new Student[3]; // 13 biến sinh viên, chưa có object thực, value
+                                       // s[0], s[1], s[2] ~~~ s1 s2 s3 ở khai báo lẻ
+        s[0] = new Student("SE123456", "AN NGUYỄN", 2001, 5.6);
+        s[1] = new Student("SE123457", "BÌNH LÊ", 2000, 5.7);
+        s[2] = new Student("SE123458", "CƯỜNG VÕ", 1999, 5.8);
+        
+        // BIẾN SV CÒN LẠI TỪ S[3] ... S[12] GIÁ TRỊ DEFAULT LÀ GÌ?
+        // DEFAULT LÀ NULL - HẠ CÁNH ĐÁY RAM
+        // NGUYÊN TẮC CHƠI VỚI MẢNG OBJECT CẤM TUYỆT ĐỐI FOR HẾT NẾU MẢNG CHƯA GÁN FULL
+        // VÌ PHẦN CÒN LẠI TRỎ ĐÁY RAM MẶC ĐỊNH, ĐỊA CHỈ 0 MẶC ĐỊNH
+        // PHẦN GÁN RỒI - GÁN VÀO CLONE NEW THÌ CHẠY BÌNH THƯỜNG
+        // MẢNG OBJECT BẮT BUỘC PHẢI FOR ĐẾN COUNT LÀ SỐ PHẦN TỬ ĐÃ GÁN
+        // mảng primitive default là 0, value in bình thường
+        // còn đáy ram của s[i].showProfile() có value gì mà show, toàn 0 mà.
+        
+        System.out.println("The student list");
+//        s[0].showProfile();
+//        s[1].showProfile();
+//        s[2].showProfile();
+        
+        for (int i = 0; i < s.length; i++) {
+            s[i].showProfile();
+        }
+        
+        System.out.println("CƯỜNG lower: " + s[2].getName().toUpperCase().toLowerCase().charAt(0));
+
     }
     
 }

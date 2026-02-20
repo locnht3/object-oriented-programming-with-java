@@ -5,7 +5,11 @@ public class BasicArray {
     public static void main(String[] args) {
         //playWithPrimitiveArrayV3();
         //playWithAnObject();
-        playWithObjectArray();
+        //playWithObjectArray();
+        //playWithObjectArrayV2();
+        //sortPrimitiveArray();
+        sortPrimitiveArrayV2();
+        //sortObjectArray();
     }
     
     public static void playWithPrimitiveArray() {
@@ -176,4 +180,93 @@ public class BasicArray {
 
     }
     
+    public static void playWithObjectArrayV2() {
+        Student[] arr = new Student[2];
+        arr[0] = new Student("SE123456", "AN NGUYỄN", 2001, 9.0);
+        arr[1] = new Student("SE123457", "BÌNH LÊ", 2000, 5.0);
+        
+        // In mảng
+        System.out.println("The student list before setting");
+//        for (int i = 0; i < arr.length; i++) {
+//            //arr[i].showProfile();
+//            System.out.println(arr[i]); // gọi thầm tên em
+//        }
+        
+        for (Student x : arr) {
+            // x là từng phần tử của mảng, tập hợp, vào từng phần tử lấy value.
+            // Với mỗi, duyệt qua toàn bộ mảng.
+            // x = arr[0]; x = arr[1]; x = arr[i]; cho tao cùng nhìn cái coi
+            // arr[i].showProfile() ~~~ x.showProfile()
+            // 2 chàng 1 nàng
+            //x.showProfile();
+            System.out.println(x);  // gọi thầm tên em
+        }
+        
+        // Ta muốn in mảng tăng dần về điểm, về lý là BÌNH 5.0 | AN 9.0
+        // arr[0] đang trỏ sai, mày đầu mảng thì phải trỏ new BÌNH 5.0
+        // arr[1] đang trỏ sai, mày đang trỏ 5.0 là sai, nhì mảng thì phải trỏ new AN 9.0
+        // cần hoán đổi việc trỏ
+        // arr[0] trỏ BÌNH 5.0 đang được giữ bởi arr[1]
+        // arr[1] ơi, cho tao - arr[0] xin vùng ram BÌNH 5.0 đi
+        arr[0] = arr[1];
+        System.out.println("The student list after sorting ascending by gpa");
+        for (Student x : arr) {
+            x.showProfile();
+        }
+    }
+    
+    public static void sortPrimitiveArray() {
+        int a = 9, b = 5;
+        // quy ước a đứng trước b khi in ra kết quá
+        System.out.println("Before sorting: a: "+ a + " | b: " + b);
+        // Muốn in giá trị a b tăng dần thì đổi giá trị cho nhau là xong
+        //a = b;  // a lấy giá trị của b, đang là 5, do đó a đã là 5
+        //b = a;  // b lấy giá trị của a, đang 5 luôn rồi (1 giá trị tại 1 thời điểm)
+                // đúng ra phải là b = a cũ xưa xưa, 9 đó
+                // đúng chuẩn phải backup a trước khi a chơi với giá trị mới
+        // biến trung gian, tờ giấy nháp ghi lại cái sắp bị quên là 9 trong a
+        
+        int t = a; // a 9 cất vào t temporary, temp, tmp, t
+        a = b;     // a lấy 5 của b
+        b = t;     // b lấy a cũ đang trong t là 9
+        System.out.println("After sorting: a: "+ a + " | b: " + b);
+    }
+    
+    public static void sortPrimitiveArrayV2() {
+        int a = 4, b = 10;       
+        System.out.println("Before sorting: a: "+ a + " | b: " + b);          
+        // Nếu có trục trặc thứ tự thì mới đổi,
+        // trong sắp xếp tăng dần, thì thằng trước PHẢI bé hơn thằng sau
+        // nếu đứng trước mà lớn hơn đứng sau 9 5 | 8 4,
+        // thì phải đổi value, hoán đổi
+        // chỉ hoán đổi khi có trục trặc, thằng trước LỚN HƠN thằng sau,
+        // if thằng trước > thằng sau, đổi ngay và luôn
+        if (a > b) { // do ta quy ước a trước b              
+            int t = a; 
+            a = b;     
+            b = t;
+        }
+     
+        System.out.println("After sorting: a: "+ a + " | b: " + b);
+    }
+    
+    public static void sortObjectArray() {
+        Student arr[] = new Student[2];
+        arr[0] = new Student("SE123456", "AN NGUYỄN", 2001, 4.0);
+        arr[1] = new Student("SE123457", "BÌNH LÊ", 2000, 8.0);
+        
+        System.out.println("The student list before sorting");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i].showProfile();
+        }
+        
+        Student t = arr[0]; // arr[0] cho tao tọa độ bạn AN 9.0, trỏ cùng, backup
+        arr[0] = arr[1];    // arr[1] đang trỏ BÌNH 5.0, ngồi sau trỏ nhỏ, đưa nhỏ cho [0]
+        arr[1] = t;         // trỏ vào AN 9.0
+        System.out.println("The student list after sorting ascending by gpa");
+        for (Student x : arr) {
+            x.showProfile();
+        }
+    }
+   
 }

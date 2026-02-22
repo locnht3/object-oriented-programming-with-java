@@ -6,10 +6,14 @@ package data;
 // ta đang nói về cái Khuôn Tổ mà sinh ra nhiều Khuôn khác
 // Shape đại diện, Cha của đám Vuông, Tròn, Chữ Nhật, Tam Giác,...
 // đọc 1 chiều thôi.
+// MỘT CLASS CHỨA HÀM ABSTRACT TỨC LÀ HÀM KHÔNG CODE, TỨC LÀ Ý TƯỞNG CẦN CÓ
+// THÌ BẢN THÂN CLASS CHƯA HOÀN HẢO, CHƯA HÀNH XỬ ĐƯỢC, GIỐNG NHƯ BẢN CONCEPT
+// NÓ CHỈ MỚI LÀ Ý TƯỞNG MÀ THÔI, DO ĐÓ NẾU CLASS CHỨA HÀM ABSTRACT THÌ CLASS CŨNG PHẢI LÀ ABSTRACT
 public abstract class Shape {
     // Đặc tính của Cha, Hình Học là gì?
     protected String owner;
     protected String color;
+    protected String borderColor; // màu đường bo cạnh, biên
     //protected double a, b, c, d, f, radius; //... bốc mùi
     // giả sử thằng Con Hình Tròn kế thừa Shape, thế thì nó có cạnh
     // lúc get() set() xổ ra 1 đống cạnh
@@ -18,9 +22,10 @@ public abstract class Shape {
     // Chung cho các Con kế thừa, phần dị biệt mỗi đứa thì mỗi đứa giữ
     // TUYỆT ĐỐI KHÔNG ĐỂ DỊ BIỆT LÊN CHA, DỊ BIỆT CỦA TỪNG ĐỨA CON
 
-    public Shape(String owner, String color) {
+    public Shape(String owner, String color, String borderColor) {
         this.owner = owner;
         this.color = color;
+        this.borderColor = borderColor;
     }
 
     public String getOwner() {
@@ -38,6 +43,16 @@ public abstract class Shape {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public String getBorderColor() {
+        return borderColor;
+    }
+
+    public void setBorderColor(String borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    
     
     // Hành động tiếp theo, hàm của tui?
     // tính diện tích, chu vi?
@@ -63,6 +78,14 @@ public abstract class Shape {
     
     public abstract double getArea(); // diện tích là khái niệm heng
     public abstract double getPerimeter(); // ý tưởng đo cạnh heng, từ từ tính, hình nào mà chả có
+    
+    public abstract void paint();
+    // vì các thao tác vẽ hình là khác nhau, chưa kể in ra là khác nhau
+    // CHUỖI IN RA KHÁC NHAU RECT, SQR, TRG, R.TRG,...
+    // diện tích tính toán khác nhau
+    // PHẢN BIỆN: VIẾT PAINT() HERE SHAPE VÀ EM IF if (Tròn) in hình Tròn, if (TG) in Tam Giác
+    // ĐƯỢC NHƯNG MẤT ĐI TÍNH LINH HOẠT DỄ MỞ RỘNG, THÍCH ỨNG VỚI MỌI LOẠI HÌNH CÒN TIẾP TỤC ĐƯỢC SINH RA SAU NÀY
+    // NGUYÊN LÍ SOLID
 }
 
 // CHỐT HẠ: VIỆC TÍNH S P LÀ GẮN KÈM KHÁI NHIỆM HÌNH HỌC, NÓI Ý TƯỞNG RẰNG 

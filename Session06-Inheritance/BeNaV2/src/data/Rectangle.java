@@ -27,7 +27,7 @@ package data;
 // TA KHÔNG ĐEM BÁN, SỬ DỤNG ĐIỀU KHÔNG HOÀN HẢO
 
 public class Rectangle extends Shape {
-    private double a, b; // width, length
+    protected double a, b; // width, length
 
     public Rectangle(String owner, String color, String borderColor, double a, double b) {
         super(owner, color, borderColor);

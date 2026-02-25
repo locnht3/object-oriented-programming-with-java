@@ -4,11 +4,13 @@ import data.Cat;
 import data.Dog;
 import data.Hamster;
 import data.Pet;
+import java.util.Random;
 
 public class AmazingRaceV2 {
 
     public static void main(String[] args) {
-        showRecords();
+        //showRecords();
+        showRecordsWithTakeAway();
     }
     
     public static void showRecords() {
@@ -64,4 +66,63 @@ public class AmazingRaceV2 {
 
     }
     
+    public static void showRecordsWithTakeAway() {
+        
+        // Đường đua đông vui, có nhiều racer, và có một con gì đó không nhìn rõ bay theo,
+        // vật gì đó bay theo, tức là có tốc độ,
+        // mình không biết, không xác định được nhóm của nó là gì, chưa biết class gì
+        // vì mày muốn nhập hội, oke, chạy theo đi, chơi trò take-away
+        // mượn gió bẻ măng, mượn Pet để new Object
+        
+        Pet ufo = new Pet("UFO", 2021, 0.3) {
+            
+            public static final double MAX_SPEED = 30;
+            
+            @Override
+            public double run() {
+                if (count == 1) {
+                    firstRecord = new Random().nextDouble() * MAX_SPEED;
+                    count++;
+                }
+                return firstRecord;
+            }
+            
+            @Override
+            public void showRecord() {
+                System.out.printf("|%-10s|%-10s|%4d|%4.1f|%4.1f|\n", "UFO", name, yob, weight, run());
+            }
+        };
+        
+        Hamster xx = new Hamster("NHẮT", 2020, 0.3);
+        Pet racer[] = new Pet[] { new Dog("CHIHUHU", 2020, 0.5),
+                                  new Dog("VÀNG ƠI", 1950, 10.0),
+                                  new Cat("TOM", 1960, 15.0),
+                                  new Cat("KITTY", 1990, 5.0),
+                                  new Hamster("JERRY", 1960, 0.5),
+                                  xx,
+                                  ufo
+                                };
+        
+        System.out.println("The records table");
+        for (Pet x : racer) {
+            x.showRecord();
+        }        
+                   
+        System.out.println("The records table after sorting ascending speed");
+        for (int i = 0; i < racer.length - 1; i++) {
+            for (int j = i + 1; j < racer.length; j++) {
+                if (racer[i].run() > racer[j].run()) {
+                    Pet t = racer[i];
+                    racer[i] = racer[j];
+                    racer[j] = t;
+                }
+            }
+        }
+        
+        for (Pet x : racer) {
+            x.showRecord();
+        }
+
+    }
+      
 }

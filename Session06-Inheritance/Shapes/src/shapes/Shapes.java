@@ -6,7 +6,8 @@ public class Shapes {
 
     public static void main(String[] args) {
         //sortShapes();
-        playWithAnonymousClass();
+        //playWithAnonymousClass();
+        sortShapesWithAnonymous();
     }
     
     public static void sortShapes() {
@@ -93,6 +94,63 @@ public class Shapes {
         // CHỈ XÀI CÁCH NÀY NẾU CHỈ CẦN LÀM 1 OBJECT ON THE GO, MÀ LÀM BIẾNG LÀM KHUÔN CON RIÊNG LẺ, THEO CÔNG THỨC NHÂN BẢN
         
         vangLai.paint();
+    }
+    
+    public static void sortShapesWithAnonymous() {
+        
+        // Anonymous here|||
+        Shape onTheGo = new Shape("THIS-TUI", "RANDOM", "RANDOM") {
+            @Override
+            public double getArea() {
+                // cắt hình ngẫu nhiên, không gọi được là hình gì, S phải tự đo
+                return 50;
+            }
+            
+            @Override
+            public double getPerimeter() {
+                return 40;
+            }
+            
+            @Override
+            public void paint() {
+                System.out.printf("|%-10s|%-10s|%-10s|%-10s|%4s|%4s|%7.2f|\n", "TAKE-AWAY", owner, color, borderColor, " ", " ", getArea());
+            }
+        };  // VIP
+        
+        Rectangle r1 = new Rectangle("TÍA", "PINK", "MAGENTA", 5.0, 6.0);
+        Shape r2 = new Rectangle("TÍA", "MAGENTA", "PINK", 6.0, 5.0);
+        
+        Square s1 = new Square("MÁ", "PINK", "MAGENTA", 7.0);
+        Rectangle s2 = new Square("MÁ", "PINK", "MAGENTA", 8.0);
+        Shape s3 = new Square("MÁ", "PINK", "MAGENTA", 9.0);
+        
+        Disk d1 = new Disk("BÉ NA", "RAINBOW", "RAINBOW", 2.0);
+        Shape d2 = new Disk("GHỆ BÉ NA", "RAINBOW", "RAINBOW", 1.0);
+        
+        Shape[] arr = new Shape[]{r1, r2, s1, s2, s3, d1, d2, onTheGo};
+                                                              // hình ngẫu nhiên vẫn là hình
+        
+        System.out.println("The list of shapes");
+        for (Shape x : arr) {
+            x.paint(); // tính đa hình
+        } 
+        
+        // Sắp xếp tăng dần theo S
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i].getArea() > arr[j].getArea()) {
+                    Shape t = arr[i];   
+                    arr[i] = arr[j];    
+                    arr[j] = t;         
+                }
+            }
+        }
+        
+        System.out.println("The list of shapes after ascending by area");
+        for (Shape x : arr) {
+            x.paint();
+        }
+        
     }
     
 }
